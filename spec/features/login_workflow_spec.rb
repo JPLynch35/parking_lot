@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'a visitor' do
-  describe 'visiting the root page' do
+describe 'user visits root page' do
+  comtext 'as an unregistered visitor' do
     it 'can create an account' do
       visit '/'
       click_on 'Register'
