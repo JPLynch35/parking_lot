@@ -2,12 +2,6 @@ require 'rails_helper'
 
 describe 'a visitor' do
   describe 'visiting the root page' do
-    it 'can click on the log in button and be taken to to login page' do
-      visit '/'
-      click_on 'Log In'
-
-      expect(current_path).to eq(login_path)
-    end
     it 'can create an account' do
       visit '/'
       click_on 'Register'
@@ -23,11 +17,19 @@ describe 'a visitor' do
       expect(current_path).to eq(questions_path)
       expect(User.last.first_name).to eq('Jeff')
     end
-    # it 'can log in to existing account' do
-    #   visit '/'
-    #   click_on 'Log In'
+    it 'can log in to existing account' do
+      user = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
 
-    #   expect(current_path).to eq(login_path)
-    # end
+      visit '/'
+      click_on 'Log In'
+
+      expect(current_path).to eq(login_path)
+
+      fill_in 'email', with: 'Bob@gmail.com'
+      fill_in 'password', with: 'secret'
+      click_on 'Log In'
+
+      expect(current_path).to eq(questions_path)
+    end
   end
 end

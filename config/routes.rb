@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'welcome#index'
   get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
 
   resources :questions, only: [:index]
   resources :users, only: [:new, :create]
