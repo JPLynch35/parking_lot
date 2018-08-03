@@ -8,7 +8,7 @@ describe 'a default user' do
       @question1 = user1.questions.create(content: 'How do people train for a marathon?')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user2)
     end
-    xit 'can see a list of all the parking lot questions' do
+    it 'can see a list of all the parking lot questions' do
       visit questions_path
 
       expect(page).to have_content('Parking Lot')

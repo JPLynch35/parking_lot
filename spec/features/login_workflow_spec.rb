@@ -21,7 +21,7 @@ describe 'a visitor' do
       click_on 'Create Account'
 
       expect(current_path).to eq(questions_path)
-      expect(current_user).to eq(User.last)
+      expect(User.last.first_name).to eq('Jeff')
     end
     # it 'can log in to existing account' do
     #   visit '/'
