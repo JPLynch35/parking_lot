@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
 
   resources :questions, only: [:index]
+  resources :users, only: [:new, :create]
 end
