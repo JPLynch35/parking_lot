@@ -8,7 +8,8 @@ describe 'user visits questions index page' do
       @question2 = user1.questions.create(content: 'How do you win a pizza eating contest?')
     end
     it 'can see a list of all the parking lot questions' do
-      visit questions_path
+      visit '/'
+      click_button 'View Questions'
 
       expect(page).to have_content('Parking Lot')
       expect(page).to have_content(@question1.content)
