@@ -1,0 +1,8 @@
+<h1>Question:</h1>
+<h3><%= @question.content %></h1>
+<p>Submitted by: <%= @question.user.first_name %> <%= @question.user.last_name[0] %>.</p>
+<% if @question.answer %>
+  <%= @question.answer.content %>
+<% else %>
+  <%= render partial: 'admin/answers/form' %>
+<% end %>

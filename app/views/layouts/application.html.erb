@@ -11,12 +11,12 @@
   <body>
     <nav>
       <div class="nav-wrapper">
-        <a href="/questions" class="brand-logo">ParkingLot</a>
+        <a href="/questions" class="brand-logo logo-shift">ParkingLot</a>
         <div class="brand-logo center">
           <ul>
             <li>
               <% if current_user %>
-                Logged in as: <%= current_user.first_name.capitalize %>
+                <div class="minimize-log">Logged in as: <%= current_user.first_name.capitalize %></div>
               <% end %>
             </li>
           </ul>

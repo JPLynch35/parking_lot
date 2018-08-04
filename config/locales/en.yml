@@ -35,3 +35,6 @@ en:
       question:
         create: "Submit"
         update: "Submit"
+      answer:
+        create: "Submit"
+        update: "Submit"

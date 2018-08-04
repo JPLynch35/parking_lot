@@ -1,0 +1,6 @@
+<%= form_for [:admin, @question, @answer] do |f| %>
+  <%= f.label :content %></br>
+  <%= f.text_area :content,  placeholder: "The sky is blue because it's blue",  cols: "30", rows: "10" %></br></br>
+  
+  <%= f.submit %>
+<% end %>
