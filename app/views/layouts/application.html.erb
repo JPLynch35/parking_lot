@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <% if current_user %>
+
+    <% else %>
+      <%= button_to 'Log In', login_path, method: 'get' %>
+    <% end %>
+    <%= button_to 'Register', new_user_path, method: 'get' %>
+    <%= button_to 'View Questions', questions_path, method: 'get' %>
     <%= yield %>
   </body>
 </html>
