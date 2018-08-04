@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :sub_comments
 
+  enum role: ['default', 'admin']
+
   has_secure_password
   
 end

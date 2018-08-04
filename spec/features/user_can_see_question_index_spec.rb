@@ -78,5 +78,17 @@ describe 'user visits questions index page' do
       expect(page).to have_content('This is a test question, can you see it?')
       expect(page).to have_content('Submitted by: Jill S.')
     end
+    it 'is directed to admin question page after clicking a question' do
+      visit questions_path
+      click_on @question1.content
+
+      expect(current_path).to eq(admin_question_path(@question1))
+
+      fill_in 'Content', with: 'This is a test answer, can you see it?'
+      click_on 'Submit'
+
+      expect(current_path).to eq(admin_question_path(@question1))
+      expect(page).to have_content('This is a test answer, can you see it?')
+    end
   end
 end
