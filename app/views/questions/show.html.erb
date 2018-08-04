@@ -3,4 +3,5 @@
 <p>Submitted by: <%= @question.user.first_name %> <%= @question.user.last_name[0] %>.</p>
 <% if @question.user == current_user %>
   <%= button_to 'Edit', edit_question_path(@question), method: 'get' %>
+  <%= button_to 'Delete', question_path(@question), method: 'delete' %>
 <% end %>
