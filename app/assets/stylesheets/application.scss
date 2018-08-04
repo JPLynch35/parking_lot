@@ -16,3 +16,13 @@
  @import "materialize";
  @import "https://fonts.googleapis.com/icon?family=Material+Icons";
  
+ .card-rows {
+    width:30%;
+    display: inline-block;
+    margin-left: 1.55%;
+    margin-right: 1.55%;
+  }
+
+  .post-q {
+    padding-top: 10px;
+  }
