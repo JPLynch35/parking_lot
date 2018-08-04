@@ -9,13 +9,28 @@
   </head>
 
   <body>
-    <% if current_user %>
-
-    <% else %>
-      <%= button_to 'Log In', login_path, method: 'get' %>
-    <% end %>
-    <%= button_to 'Register', new_user_path, method: 'get' %>
-    <%= button_to 'View Questions', questions_path, method: 'get' %>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/questions" class="brand-logo">ParkingLot</a>
+        <div class="brand-logo center">
+          <ul>
+            <li>
+              <% if current_user %>
+                Logged in as: <%= current_user.first_name.capitalize %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if current_user %>
+            <li><%= link_to 'Log Out', logout_path, method: 'post' %></li>
+          <% else %>
+            <li><%= link_to 'Log In', login_path %></li>
+            <li><%= link_to 'Register', new_user_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

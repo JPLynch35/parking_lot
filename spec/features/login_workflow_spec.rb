@@ -4,7 +4,7 @@ describe 'user visits root page' do
   context 'as an unregistered visitor' do
     it 'can create an account' do
       visit '/'
-      within(nav) do
+      within('nav') do
         click_on 'Register'
       end
 
@@ -26,7 +26,7 @@ describe 'user visits root page' do
       user = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
 
       visit '/'
-      within(nav) do
+      within('nav') do
         click_on 'Log In'
       end
 
@@ -34,13 +34,13 @@ describe 'user visits root page' do
 
       fill_in 'email', with: 'Bob@gmail.com'
       fill_in 'password', with: 'secret'
-      click_on 'Log In'
+      click_on 'Submit'
 
       expect(current_path).to eq(questions_path)
 
       click_on 'Log Out'
 
-      within(nav) do
+      within('nav') do
         expect(page).to have_content('Log In')
       end
 

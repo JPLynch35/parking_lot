@@ -10,7 +10,6 @@ describe 'user visits questions index page' do
     it 'can see a list of all the parking lot questions' do
       visit '/'
 
-      expect(page).to have_content('Parking Lot')
       expect(page).to have_content(@question1.content)
       expect(page).to have_content(@question2.content)
     end
@@ -32,7 +31,6 @@ describe 'user visits questions index page' do
     it 'can see a list of all the parking lot questions' do
       visit questions_path
 
-      expect(page).to have_content('Parking Lot')
       expect(page).to have_content(@question1.content)
       expect(page).to have_content(@question2.content)
     end
