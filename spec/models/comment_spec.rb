@@ -12,12 +12,4 @@ describe Comment, type: :model do
     it { should belong_to(:question) }
     it { should have_many(:sub_comments) }
   end
-
-  describe 'instance methods' do
-    
-  end
-
-  describe 'class methods' do
-    
-  end
 end
