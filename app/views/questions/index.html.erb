@@ -1,19 +1,18 @@
 <% if current_user %>
-  <%= button_to 'Post a Question', new_question_path, method: 'get' %>
+  <%= button_to "Post a Question", new_question_path, method: "get" %>
 <% end %>
 
 <% @questions.each do |question| %>
   <div class="row">
     <div class="col s12 m3">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">Card Title</span>
-          <p><%= question.content %></p>
+      <%= link_to question_path(question) do %>
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Card Title</span>
+            <p><%= question.content %></p>
+          </div>
         </div>
-        <div class="card-action">
-          <%= link_to 'Question Page', question_path(question) %>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 <% end %>
