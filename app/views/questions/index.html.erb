@@ -1,4 +1,7 @@
 <h1>Parking Lot</h1>
+<% if current_user %>
+  <%= link_to 'Post a Question', new_question_path %>
+<% end %>
 
 <% @questions.each do |question| %>
   <%= question.content %>

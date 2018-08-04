@@ -42,12 +42,12 @@ describe 'user visits questions index page' do
 
       expect(current_path).to eq(new_question_path)
 
-      fill_in 'content', with: 'This is a test question, can you see it?'
+      fill_in 'Content', with: 'This is a test question, can you see it?'
       click_on 'Submit'
 
       expect(current_path).to eq(question_path(Question.last))
       expect(page).to have_content('This is a test question, can you see it?')
-      expect(page).to have_content('Submitted by: Bob S.')
+      expect(page).to have_content('Submitted by: Jill S.')
     end
   end
 end
