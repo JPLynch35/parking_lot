@@ -1,8 +1,20 @@
-<h1>Parking Lot</h1>
 <% if current_user %>
-  <%= link_to 'Post a Question', new_question_path %>
+  <div class="center-align post-q"><%= button_to "Post a Question", new_question_path, method: "get" %></div>
 <% end %>
 
 <% @questions.each do |question| %>
-  <%= question.content %>
+  <div class="row card-rows center-align">
+    <div class="col s3" style="width:100%">
+      <%= link_to question_path(question) do %>
+        <div class="card-panel teal">
+          <span class="white-text">
+          <p><%= question.content %></p>
+          </span>
+          <span class="white-text">
+          <p>Submitted by: <%= question.user.first_name.capitalize %> <%= question.user.last_name.capitalize[0] %></p>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>
