@@ -10,7 +10,7 @@ describe 'user visits question edit page' do
       @question3 = @user2.questions.create(content: 'How do you make millions of dollars?')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
     end
-    it 'successfully edit their own questions' do
+    it 'can successfully edit their own questions' do
       visit edit_question_path(@question1)
       fill_in 'Content', with: 'How do people like to run for over 20 miles?'
       click_on 'Submit'

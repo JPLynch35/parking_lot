@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
 
-  resources :questions, only: [:index, :show, :new, :create, :edit, :update]
+  resources :questions
   resources :users, only: [:new, :create]
 
   namespace :admin do
-    resources :questions, only: [:show] do
+    resources :questions, only: [:show, :destroy] do
       resources :answers, only: [:create]
     end
   end
