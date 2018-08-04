@@ -29,13 +29,13 @@ describe 'user visits question edit page' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
     end
     it 'can successfully delete any question' do
-      visit question_path(@question1)
+      visit admin_question_path(@question1)
       click_on 'Delete'
 
       expect(current_path).to eq(questions_path)
       expect(page).to_not have_content(@question1.content)
 
-      visit question_path(@question2)
+      visit admin_question_path(@question2)
       click_on 'Delete'
 
       expect(current_path).to eq(questions_path)
