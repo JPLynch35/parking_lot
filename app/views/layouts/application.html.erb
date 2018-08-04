@@ -15,7 +15,9 @@
         <div class="brand-logo center">
           <ul>
             <li>
-              <% if current_user %>
+              <% if current_admin? %>
+                <div class="minimize-log">Admin logged in as: <%= current_user.first_name.capitalize %></div>
+              <% elsif current_user %>
                 <div class="minimize-log">Logged in as: <%= current_user.first_name.capitalize %></div>
               <% end %>
             </li>
