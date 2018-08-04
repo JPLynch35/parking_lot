@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+user1 = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'password')
+user2 = User.create(email: 'Jill@gmail.com', first_name: 'Jill', last_name: 'Finch', password: 'password')
+user3 = User.create(email: 'user', first_name: 'Hank', last_name: 'Park', password: 'user')
+admin = User.create(email: 'admin', first_name: 'JP', last_name: 'Lynch', password: 'admin', role: 1)
+
+user1.questions.create(content: 'How do people train for a marathon?')
+user1.questions.create(content: 'How do people eat 10 pizzas?')
+user1.questions.create(content: 'Why is the sky blue?')
+user2.questions.create(content: 'Why does coffee taste so good?')
+user2.questions.create(content: 'How long does it take to drive to NJ?')
+user2.questions.create(content: 'Where is the world is Paul?')
+user3.questions.create(content: 'How far away is the moon?')
+user3.questions.create(content: 'How many pounds is 100L of water?')
+user3.questions.create(content: 'Does pineapple belong on pizza?')
