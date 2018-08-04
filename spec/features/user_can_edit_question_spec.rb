@@ -10,13 +10,20 @@ describe 'user visits question edit page' do
       @question3 = @user2.questions.create(content: 'How do you make millions of dollars?')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
     end
-    it 'can successfully edit their own questions' do
+    it 'can successfully edit their own question' do
       visit edit_question_path(@question1)
       fill_in 'Content', with: 'How do people like to run for over 20 miles?'
       click_on 'Submit'
 
       expect(current_path).to eq(question_path(@question1))
       expect(page).to have_content('How do people like to run for over 20 miles?')
+    end
+    it 'can unsuccessfully edit their own question if missing required field' do
+      visit edit_question_path(@question1)
+      fill_in 'Content', with: ''
+      click_on 'Submit'
+
+      expect(Question.first.content).to eq('How do people train for a marathon?')
     end
   end
 end

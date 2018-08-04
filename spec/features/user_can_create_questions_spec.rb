@@ -39,7 +39,7 @@ describe 'user visits questions index page' do
       @question2 = @user1.questions.create(content: 'How do you win a pizza eating contest?')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
     end
-    it 'can post a question' do
+    it 'can successfully post a question' do
       visit questions_path
       click_on 'Post a Question'
 
@@ -51,6 +51,18 @@ describe 'user visits questions index page' do
       expect(current_path).to eq(question_path(Question.last))
       expect(page).to have_content('This is a test question, can you see it?')
       expect(page).to have_content('Submitted by: Jill S.')
+    end
+    it 'can unsuccessfully post a question if missing required field' do
+      visit questions_path
+      click_on 'Post a Question'
+
+      expect(current_path).to eq(new_question_path)
+
+      fill_in 'Content', with: ''
+      click_on 'Submit'
+
+      visit questions_path
+      expect(Question.count).to eq(2)
     end
   end
 end
