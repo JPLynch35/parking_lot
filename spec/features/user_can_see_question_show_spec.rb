@@ -22,6 +22,15 @@ describe 'user visits question show page' do
 
       expect(page).to_not have_button('Edit')
     end
+    it 'cannot see delete buttons for any questions' do
+      visit question_path(@question1)
+
+      expect(page).to_not have_button('Delete')
+
+      visit question_path(@question2)
+
+      expect(page).to_not have_button('Delete')
+    end
   end
 
   context 'logged in as as a default user' do
@@ -51,6 +60,19 @@ describe 'user visits question show page' do
       visit question_path(@question3)
 
       expect(page).to_not have_button('Edit')
+    end
+    it 'can see delete buttons only for questions user made' do
+      visit question_path(@question1)
+
+      expect(page).to have_button('Delete')
+
+      visit question_path(@question2)
+
+      expect(page).to have_button('Delete')
+
+      visit question_path(@question3)
+
+      expect(page).to_not have_button('Delete')
     end
   end
 end
