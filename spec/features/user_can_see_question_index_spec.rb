@@ -9,7 +9,6 @@ describe 'user visits questions index page' do
     end
     it 'can see a list of all the parking lot questions' do
       visit '/'
-      click_button 'View Questions'
 
       expect(page).to have_content('Parking Lot')
       expect(page).to have_content(@question1.content)
