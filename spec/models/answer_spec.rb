@@ -10,12 +10,4 @@ describe Answer, type: :model do
     it { should belong_to(:user) }
     it { should belong_to(:question) }
   end
-
-  describe 'instance methods' do
-    
-  end
-
-  describe 'class methods' do
-    
-  end
 end
