@@ -23,6 +23,11 @@
     margin-right: 1.55%;
   }
 
+  .button-margin {
+    height: 40px;
+    width: 100%;
+  }
+
   .post-q {
     padding-top: 10px;
   }
@@ -43,4 +48,19 @@
   .q-textarea {
     height: 150px;
     width: 100%;
+  }
+
+  .show-q {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .show-card {
+    padding-bottom: 0px;
+  }
+
+  .remove-margin {
+    margin-left: 24px;
   }

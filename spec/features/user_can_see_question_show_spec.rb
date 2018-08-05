@@ -48,31 +48,31 @@ describe 'user visits question show page' do
       expect(page).to have_content(@question1.content)
       expect(page).to_not have_content(@question2.content)
     end
-    it 'can see edit buttons only for questions user made' do
+    it 'can see edit links only for questions user made' do
       visit question_path(@question1)
 
-      expect(page).to have_button('Edit')
+      expect(page).to have_link('Edit')
 
       visit question_path(@question2)
 
-      expect(page).to have_button('Edit')
+      expect(page).to have_link('Edit')
 
       visit question_path(@question3)
 
-      expect(page).to_not have_button('Edit')
+      expect(page).to_not have_link('Edit')
     end
-    it 'can see delete buttons only for questions user made' do
+    it 'can see delete links only for questions user made' do
       visit question_path(@question1)
 
-      expect(page).to have_button('Delete')
+      expect(page).to have_link('Delete')
 
       visit question_path(@question2)
 
-      expect(page).to have_button('Delete')
+      expect(page).to have_link('Delete')
 
       visit question_path(@question3)
 
-      expect(page).to_not have_button('Delete')
+      expect(page).to_not have_link('Delete')
     end
   end
 end
