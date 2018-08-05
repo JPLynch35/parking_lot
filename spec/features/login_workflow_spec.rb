@@ -10,9 +10,9 @@ describe 'user visits root page' do
 
       expect(current_path).to eq(new_user_path)
 
-      fill_in :user_email, with: 'Jeff@gmail.com'
       fill_in :user_first_name, with: 'Jeff'
       fill_in :user_last_name, with: 'Smith'
+      fill_in :user_email, with: 'Jeff@gmail.com'
       fill_in :user_password, with: 'secret'
       click_on 'Submit'
 
@@ -23,9 +23,10 @@ describe 'user visits root page' do
       User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
       visit new_user_path
 
-      fill_in :user_email, with: 'Jeff@gmail.com'
       fill_in :user_first_name, with: 'Jeff'
+      fill_in :user_email, with: 'Jeff@gmail.com'
       fill_in :user_password, with: 'secret'
+
       click_on 'Submit'
 
       expect(User.last.first_name).to_not eq('Jeff')

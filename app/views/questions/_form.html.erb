@@ -1,6 +1,5 @@
 <%= form_for @question do |f| %>
-  <%= f.text_area :content,  placeholder: 'Why is the sky blue?',  cols: "30", rows: "10" %></br></br>
-  
+  <%= f.text_area :content,  placeholder: 'Why is the sky blue?', class:"q-textarea"%>
   <div class="center-align">
     <%= f.submit %>
   </div>
