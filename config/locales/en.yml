@@ -32,6 +32,9 @@
 en:
   helpers:
     submit:
+      user:
+        create: "Submit"
+        update: "Submit"
       question:
         create: "Submit"
         update: "Submit"

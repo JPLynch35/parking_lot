@@ -1,15 +1,23 @@
 <%= form_for @user do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.submit 'Create Account' %>
+  <div class="row">
+    <div class="col s6">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="col s6">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="col s12">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="col s12">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="center-align">
+      <%= f.submit %>
+    </div>
+  </div>
 <% end %>

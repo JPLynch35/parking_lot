@@ -44,7 +44,7 @@ describe 'user visits admin question show page' do
     it 'can answer the question' do
       visit admin_question_path(@question1)
 
-      fill_in 'Content', with: 'This is a test answer, can you see it?'
+      fill_in :answer_content, with: 'This is a test answer, can you see it?'
       click_on 'Submit'
 
       expect(current_path).to eq(admin_question_path(@question1))

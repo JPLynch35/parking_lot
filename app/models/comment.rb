@@ -3,5 +3,5 @@ class Comment <ApplicationRecord
 
   belongs_to :user
   belongs_to :question
-  has_many :sub_comments
+  has_many :sub_comments, dependent: :destroy
 end

@@ -1,0 +1,15 @@
+<%= form_tag do %>
+  <div class="row">
+    <div class="col s12">
+      <%= label_tag :email %></br>
+      <%= text_field_tag :email %></br></br>
+    </div>
+    <div class="col s12">
+      <%= label_tag :password %></br>
+      <%= password_field_tag :password %></br></br>
+    </div>
+    <div class="center-align">
+      <%= submit_tag 'Submit' %>
+    </div>
+  </div>
+<% end %>

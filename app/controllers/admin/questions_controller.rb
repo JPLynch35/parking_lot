@@ -6,10 +6,7 @@ class Admin::QuestionsController < Admin::BaseController
 
   def destroy
     @question = Question.find(params[:id])
-    if @question.destroy
-      redirect_to questions_path
-    else
-      redirect_to admin_question_path(@question)
-    end
+    @question.destroy
+    redirect_to questions_path
   end
 end
