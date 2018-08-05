@@ -14,7 +14,7 @@ describe 'user visits root page' do
       fill_in 'user_first_name', with: 'Jeff'
       fill_in 'user_last_name', with: 'Smith'
       fill_in 'user_password', with: 'secret'
-      click_on 'Create Account'
+      click_on 'Submit'
 
       expect(current_path).to eq(questions_path)
       expect(User.last.first_name).to eq('Jeff')
@@ -26,7 +26,7 @@ describe 'user visits root page' do
       fill_in 'user_email', with: 'Jeff@gmail.com'
       fill_in 'user_first_name', with: 'Jeff'
       fill_in 'user_password', with: 'secret'
-      click_on 'Create Account'
+      click_on 'Submit'
 
       expect(User.last.first_name).to_not eq('Jeff')
     end
