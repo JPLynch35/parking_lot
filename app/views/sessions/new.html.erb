@@ -1,9 +1,4 @@
-<%= form_tag do %>
-  <%= label_tag :email %></br>
-  <%= text_field_tag :email %></br></br>
-
-  <%= label_tag :password %></br>
-  <%= password_field_tag :password %></br></br>
-
-  <%= submit_tag 'Submit' %>
-<% end %>
+<h3 class="center-align">Log In</h3>
+<div class="center-login">
+  <%= render partial: "form" %>
+</div>
