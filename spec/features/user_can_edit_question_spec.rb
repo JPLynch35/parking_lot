@@ -12,7 +12,7 @@ describe 'user visits question edit page' do
     end
     it 'can successfully edit their own question' do
       visit edit_question_path(@question1)
-      fill_in 'Content', with: 'How do people like to run for over 20 miles?'
+      fill_in :question_content, with: 'How do people like to run for over 20 miles?'
       click_on 'Submit'
 
       expect(current_path).to eq(question_path(@question1))
@@ -20,7 +20,7 @@ describe 'user visits question edit page' do
     end
     it 'can unsuccessfully edit their own question if missing required field' do
       visit edit_question_path(@question1)
-      fill_in 'Content', with: ''
+      fill_in :question_content, with: ''
       click_on 'Submit'
 
       expect(Question.first.content).to eq('How do people train for a marathon?')

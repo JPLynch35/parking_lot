@@ -10,10 +10,10 @@ describe 'user visits root page' do
 
       expect(current_path).to eq(new_user_path)
 
-      fill_in 'user_email', with: 'Jeff@gmail.com'
-      fill_in 'user_first_name', with: 'Jeff'
-      fill_in 'user_last_name', with: 'Smith'
-      fill_in 'user_password', with: 'secret'
+      fill_in :user_email, with: 'Jeff@gmail.com'
+      fill_in :user_first_name, with: 'Jeff'
+      fill_in :user_last_name, with: 'Smith'
+      fill_in :user_password, with: 'secret'
       click_on 'Submit'
 
       expect(current_path).to eq(questions_path)
@@ -23,9 +23,9 @@ describe 'user visits root page' do
       User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
       visit new_user_path
 
-      fill_in 'user_email', with: 'Jeff@gmail.com'
-      fill_in 'user_first_name', with: 'Jeff'
-      fill_in 'user_password', with: 'secret'
+      fill_in :user_email, with: 'Jeff@gmail.com'
+      fill_in :user_first_name, with: 'Jeff'
+      fill_in :user_password, with: 'secret'
       click_on 'Submit'
 
       expect(User.last.first_name).to_not eq('Jeff')
@@ -43,8 +43,8 @@ describe 'user visits root page' do
 
       expect(current_path).to eq(login_path)
 
-      fill_in 'email', with: 'Bob@gmail.com'
-      fill_in 'password', with: 'secret'
+      fill_in :email, with: 'Bob@gmail.com'
+      fill_in :password, with: 'secret'
       click_on 'Submit'
 
       expect(current_path).to eq(questions_path)
@@ -62,8 +62,8 @@ describe 'user visits root page' do
 
       visit login_path
 
-      fill_in 'email', with: 'Bob@gmail.com'
-      fill_in 'password', with: 'wrongpassword'
+      fill_in :email, with: 'Bob@gmail.com'
+      fill_in :password, with: 'wrongpassword'
       click_on 'Submit'
 
       within('nav') do

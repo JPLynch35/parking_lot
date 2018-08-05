@@ -22,7 +22,7 @@ describe 'user visits questions index page' do
 
       expect(current_path).to eq(new_question_path)
 
-      fill_in 'Content', with: 'This is a test question, can you see it?'
+      fill_in :question_content, with: 'This is a test question, can you see it?'
       click_on 'Submit'
 
       expect(current_path).to eq(question_path(Question.last))
@@ -45,7 +45,7 @@ describe 'user visits questions index page' do
 
       expect(current_path).to eq(new_question_path)
 
-      fill_in 'Content', with: 'This is a test question, can you see it?'
+      fill_in :question_content, with: 'This is a test question, can you see it?'
       click_on 'Submit'
 
       expect(current_path).to eq(question_path(Question.last))
@@ -58,7 +58,7 @@ describe 'user visits questions index page' do
 
       expect(current_path).to eq(new_question_path)
 
-      fill_in 'Content', with: ''
+      fill_in :question_content, with: ''
       click_on 'Submit'
 
       visit questions_path

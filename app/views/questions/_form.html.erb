@@ -1,6 +1,7 @@
 <%= form_for @question do |f| %>
-  <%= f.label :content %></br>
   <%= f.text_area :content,  placeholder: 'Why is the sky blue?',  cols: "30", rows: "10" %></br></br>
   
-  <%= f.submit %>
+  <div class="center-align">
+    <%= f.submit %>
+  </div>
 <% end %>
