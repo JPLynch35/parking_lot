@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
     if @question.update(question_params)
       redirect_to question_path(@question)
     else
-      :edit
+      render :edit
     end
   end
 
