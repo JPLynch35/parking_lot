@@ -1,5 +1,5 @@
 <div class="button-margin">
-  <% if current_user %>
+  <% if current_user && current_admin? == false %>
     <div class="center-align post-q"><%= button_to "Post a Question", new_question_path, method: "get" %></div>
   <% end %>
 </div>
