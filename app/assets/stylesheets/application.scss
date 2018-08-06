@@ -52,6 +52,13 @@
   }
 
   .show-q {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .show-admin-q {
     display: flex;
     flex-direction: row;
     justify-content: center;
