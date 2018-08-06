@@ -41,5 +41,10 @@ describe 'user visits question edit page' do
       expect(current_path).to eq(questions_path)
       expect(page).to_not have_content(@question2.content)
     end
+    it 'cannot delete question after it has been answered' do
+      visit question_path(@question1)
+
+      expect(page).to_not have_link('Delete')
+    end
   end
 end

@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    render file: '/public/404.html' if current_user.nil?
     @question = Question.new
   end
 
@@ -22,10 +23,12 @@ class QuestionsController < ApplicationController
 
   def edit
     @question = Question.find(params[:id])
+    render file: '/public/404.html' unless (current_user == @question.user && @question.answer.nil?)
   end
 
   def update
     @question = Question.find(params[:id])
+    render file: '/public/404.html' unless current_user == @question.user
     if @question.update(question_params)
       redirect_to question_path(@question)
     else

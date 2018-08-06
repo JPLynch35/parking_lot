@@ -25,5 +25,12 @@ describe 'user visits question edit page' do
 
       expect(Question.first.content).to eq('How do people train for a marathon?')
     end
+    it 'cannot edit question after it has been answered' do
+      admin1 = User.create(email: 'Jane@gmail.com', first_name: 'Jane', last_name: 'Smith', password: 'secret', role: 1)
+      Answer.create(content: 'By running', question_id: @question1.id, user_id: admin1.id)
+      visit question_path(@question1)
+
+      expect(page).to_not have_link('Edit')
+    end
   end
 end
