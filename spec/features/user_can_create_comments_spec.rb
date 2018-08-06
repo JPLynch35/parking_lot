@@ -1,11 +1,17 @@
 require 'rails_helper'
 
-describe 'user visits questions index page' do
+describe 'user visits question show page' do
   context 'as an unregistered visitor' do
-    it 'cannot post a question' do
-      visit questions_path
+    before :each do
+      @user1 = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
+      @question1 = @user1.questions.create(content: 'How do people train for a marathon?')
+      @question2 = @user1.questions.create(content: 'How do you win a pizza eating contest?')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+    end
+    xit 'cannot post a comment' do
+      visit question_path(@question1)
 
-      expect(page).to_not have_button('Post a Question')
+      expect(page).to_not have_button('Post a Comment')
     end
   end
 
@@ -16,18 +22,10 @@ describe 'user visits questions index page' do
       @question2 = @user1.questions.create(content: 'How do you win a pizza eating contest?')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
     end
-    it 'can post a question' do
-      visit questions_path
-      click_on 'Post a Question'
+    xit 'can successfully post a comment' do
+      visit question_path(@question1)
 
-      expect(current_path).to eq(new_question_path)
-
-      fill_in :question_content, with: 'This is a test question, can you see it?'
-      click_on 'Submit'
-
-      expect(current_path).to eq(question_path(Question.last))
-      expect(page).to have_content('This is a test question, can you see it?')
-      expect(page).to have_content('Submitted by: Bob S.')
+      expect(page).to have_button('Post a Comment')
     end
   end
 
@@ -39,10 +37,10 @@ describe 'user visits questions index page' do
       @question2 = @user1.questions.create(content: 'How do you win a pizza eating contest?')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
     end
-    it 'does not see button to post a question' do
-      visit questions_path
+    xit 'can successfully post a comment' do
+      visit admin_question_path(@question1)
 
-      expect(current_path).to_not have_button('Post a Question')
+      expect(page).to have_content('Post a Comment')
     end
   end
 end
