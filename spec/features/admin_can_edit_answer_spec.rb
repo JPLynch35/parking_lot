@@ -14,8 +14,9 @@ describe 'user visits admin question show page' do
       within('#answer') do
         click_on 'Edit'
       end
+      fill_in :answer_content, with: 'This is an edited answer'
+      click_on 'Submit'
 
-      fill_in :content, with: 'This is an edited answer'
       expect(current_path).to eq(admin_question_path(@question1))
       expect(page).to have_content('This is an edited answer')
     end

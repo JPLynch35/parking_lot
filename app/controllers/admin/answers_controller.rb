@@ -5,6 +5,21 @@ class Admin::AnswersController < ApplicationController
     redirect_to admin_question_path(@question)
   end
 
+  def edit
+    @question = Question.includes(:answer).find(params[:question_id])
+    @answer = @question.answer
+  end
+
+  def update
+    @question = Question.includes(:answer).find(params[:question_id])
+    @answer = @question.answer
+    if @answer.update(answer_params_question_id)
+      redirect_to admin_question_path(@question)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @answer = Answer.find(params[:id])
     @answer.destroy
