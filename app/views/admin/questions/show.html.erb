@@ -1,4 +1,7 @@
-<main class="show-q">
+<div class="button-margin">
+  <div class="center-align post-q"><%= button_to "Delete", admin_question_path(@question), method: "delete" %></div>
+</div>
+<main class="show-admin-q">
   <div class="row card-rows center-align">
     <div class="col s6" style="width:100%">
       <div class="card teal">
@@ -13,9 +16,13 @@
     <% if @question.answer %>
       <div class="col s6" style="width:100%">
         <div class="card blue">
-          <div class="card-content white-text show-card">
+          <div class="card-content white-text show-card" id="answer">
             <p><%= @question.answer.content %></p></br>
             <p>Answered by: <%= @question.answer.user.first_name.capitalize %> <%= @question.answer.user.last_name.capitalize[0] %>.</p>
+            <div class="card-action remove-margin">
+              <%= link_to "Edit", edit_admin_question_answer_path(@question, @question.answer) %>
+              <%= link_to "Delete", admin_question_answer_path(@question, @question.answer), method: 'delete' %>
+            </div>
           </div>
         </div>
       </div>

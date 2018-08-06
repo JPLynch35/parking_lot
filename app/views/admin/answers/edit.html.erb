@@ -1,0 +1,22 @@
+<div class="button-margin"></div>
+<main class="show-admin-q">
+  <div class="row card-rows center-align">
+    <div class="col s6" style="width:100%">
+      <div class="card teal">
+        <div class="card-content white-text show-card">
+          <p><%= @question.content %></p></br>
+          <p>Submitted by: <%= @question.user.first_name.capitalize %> <%= @question.user.last_name.capitalize[0] %>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row card-rows center-align">
+    <div class="col s6" style="width:100%">
+      <div class="card card-border">
+        <div class="card-content black-text show-card">
+          <%= render partial: 'admin/answers/form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
