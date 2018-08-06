@@ -7,7 +7,7 @@
             <p><%= @question.content %></p></br>
             <p>Submitted by: <%= @question.user.first_name.capitalize %> <%= @question.user.last_name.capitalize[0] %>.</p>
           </div>
-          <% if @question.user == current_user %>
+          <% if @question.user == current_user && @question.answer.nil? %>
             <div class="card-action remove-margin">
               <%= link_to "Edit", edit_question_path(@question), method: 'get' %>
               <%= link_to "Delete", question_path(@question), method: 'delete' %>
