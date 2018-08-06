@@ -19,12 +19,10 @@
           <div class="card-content white-text show-card">
             <p><%= @question.answer.content %></p></br>
             <p>Answered by: <%= @question.answer.user.first_name.capitalize %> <%= @question.answer.user.last_name.capitalize[0] %>.</p>
-            <% if current_admin? %>
-              <div class="card-action remove-margin">
-                <%= link_to "Edit", edit_question_path(@question), method: 'get' %>
-                <%= link_to "Delete", question_path(@question), method: 'delete' %>
-              </div>
-            <% end %>
+            <div class="card-action remove-margin">
+              <%= link_to "Edit", edit_admin_answer_path(@question.answer), method: 'get' %>
+              <%= link_to "Delete", admin_answer_path(@question.answer), method: 'delete' %>
+            </div>
           </div>
         </div>
       </div>
