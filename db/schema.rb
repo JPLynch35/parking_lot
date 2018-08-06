@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20180803133747) do
 
   create_table "questions", force: :cascade do |t|
     t.text "content"
-    t.integer "status", default: 0
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
