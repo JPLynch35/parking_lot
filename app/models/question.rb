@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  validates_presence_of :content, :status, :user_id
+  validates_presence_of :content, :user_id
 
   belongs_to :user
   has_one :answer, dependent: :destroy
