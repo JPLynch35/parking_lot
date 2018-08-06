@@ -5,6 +5,12 @@ class Admin::AnswersController < ApplicationController
     redirect_to admin_question_path(@question)
   end
 
+  def destroy
+    @answer = Answer.find(params[:id])
+    @answer.destroy
+    redirect_to questions_path
+  end
+
   private
 
   def answer_params

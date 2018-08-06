@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :questions, only: [:show, :destroy] do
-      resources :answers, only: [:create]
+      resources :answers, only: [:create, :destroy]
     end
   end
 end

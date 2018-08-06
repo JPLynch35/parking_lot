@@ -9,13 +9,15 @@ describe 'user visits admin question show page' do
       @answer1 = Answer.create(content: 'By running', question_id: @question1.id, user_id: @admin1.id)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
     end
-    it 'can delete an answer' do
+    it 'can edit an answer' do
       visit admin_question_path(@question1)
       within('#answer') do
-        click_on 'Delete'
+        click_on 'Edit'
       end
 
-      expect(current_path).to eq(questions_path)
+      fill_in :content, with: 'This is an edited answer'
+      expect(current_path).to eq(admin_question_path(@question1))
+      expect(page).to have_content('This is an edited answer')
     end
   end
 end
