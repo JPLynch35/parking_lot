@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
 
   resources :questions do
-    resources :comments, only: [:new]
+    resources :comments, only: [:new, :create]
   end
 
   resources :users, only: [:new, :create]
