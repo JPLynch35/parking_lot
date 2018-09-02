@@ -18,11 +18,12 @@ describe 'user visits question show page' do
   context 'logged in as as a default user' do
     before :each do
       @user1 = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
+      @user2 = User.create(email: 'Jill@gmail.com', first_name: 'Jill', last_name: 'Toner', password: 'doublesecret')
       @question1 = @user1.questions.create(content: 'How do people train for a marathon?')
       @question2 = @user1.questions.create(content: 'How do you win a pizza eating contest?')
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
     end
-    xit 'can successfully post a comment' do
+    it 'can successfully post a comment' do
       visit question_path(@question1)
 
       expect(page).to have_button('Post a Comment')

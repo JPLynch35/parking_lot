@@ -1,3 +1,8 @@
+<div class="button-margin">
+  <% if current_user %>
+    <div class="center-align post-q"><%= button_to "Post a Comment", new_comment_path, method: "get" %></div>
+  <% end %>
+</div>
 <main class="show-q">
   <% if @question.answer %>
     <div class="row card-rows center-align">
