@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
   private
 
   def partial_comment_params
-    params.require(:comment).permit(:content, :question_id)
+    params.require(:comment).permit(:content)
   end
   
   def full_comment_params
