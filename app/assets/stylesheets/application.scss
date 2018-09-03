@@ -23,6 +23,12 @@
     margin-right: 1.55%;
   }
 
+  .wide-card {
+    width:80%;
+    margin-left: 1.55%;
+    margin-right: 1.55%;
+  }
+
   .button-margin {
     height: 40px;
     width: 100%;
@@ -52,6 +58,13 @@
   }
 
   .show-q {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .show-c {
     margin-top: 40px;
     display: flex;
     flex-direction: row;
@@ -83,6 +96,12 @@
     border-style: solid;
     border-width: 5px;
     border-color: rgb(64, 147, 136);
+  }
+  
+  .comment-border {
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(247, 194, 68);
   }
   
   #answer {
