@@ -77,6 +77,18 @@
     justify-content: center;
   }
 
+  .admin-c-button-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+  }
+
+  .admin-button {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
   .show-card {
     padding-bottom: 0px;
   }
@@ -107,4 +119,5 @@
   #answer {
     padding-bottom: 0px;
   }
-    
+
+  

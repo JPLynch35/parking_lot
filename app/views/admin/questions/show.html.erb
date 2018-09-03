@@ -1,5 +1,8 @@
 <div class="button-margin">
-  <div class="center-align post-q"><%= button_to "Delete", admin_question_path(@question), method: "delete" %></div>
+  <div class="center-align post-q admin-c-button-row">
+    <%= button_to "Post a Comment", new_admin_question_comment_path(@question), method: "get", class: "admin-button" %>
+    <%= button_to "Delete", admin_question_path(@question), method: "delete", class: "admin-button" %>
+  </div>
 </div>
 <main class="show-admin-q">
   <div class="row card-rows center-align">
@@ -37,3 +40,23 @@
     <% end %>
   </div>
 </main>
+<section>
+  <% @comments.each_with_index do |comment, index| %>
+    <div class="center-align show-c" id="comment-<%= index + 1 %>">
+      <div class="col s12" style="width:65%">
+        <div class="card amber">
+          <div class="card-content white-text show-card">
+            <p><%= comment.content %></p></br>
+            <p>Submitted by: <%= comment.user.first_name.capitalize %> <%= comment.user.last_name.capitalize[0] %>.</p>
+          </div>
+            <div class="card-action remove-margin">
+              <% if comment.user == current_user %>
+                <%= link_to "Edit", edit_admin_question_comment_path(@question, comment), method: 'get' %>
+              <% end %>
+              <%= link_to "Delete", admin_question_comment_path(@question, comment), method: 'delete' %>
+            </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</section>

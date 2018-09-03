@@ -1,6 +1,5 @@
-class CommentsController < ApplicationController
+class Admin::CommentsController < ApplicationController
   def new
-    return render file: '/public/404.html' unless !!current_user
     @question = Question.find(params[:question_id])
     @comment = Comment.new
     @comment.question_id = @question.id
@@ -10,14 +9,13 @@ class CommentsController < ApplicationController
     @question = Question.find(params[:question_id])
     @comment = current_user.comments.create(full_comment_params)
     if @comment.save
-      redirect_to question_path(@question)
+      redirect_to admin_question_path(@question)
     else
       render :new
     end
   end
 
   def edit
-    return render file: '/public/404.html' unless !!current_user
     @question = Question.find(params[:question_id])
     @comment = current_user.comments.find(params[:id])
   end
@@ -26,7 +24,7 @@ class CommentsController < ApplicationController
     @question = Question.find(params[:question_id])
     @comment = current_user.comments.find(params[:id])
     if @comment.update(full_comment_params)
-      redirect_to question_path(@question)
+      redirect_to admin_question_path(@question)
     else
       render :edit
     end
@@ -34,9 +32,9 @@ class CommentsController < ApplicationController
 
   def destroy
     @question = Question.find(params[:question_id])
-    @comment = current_user.comments.find(params[:id])
+    @comment = @question.comments.find(params[:id])
     @comment.destroy
-    redirect_to question_path(@question)
+    redirect_to admin_question_path(@question)
   end
 
   private

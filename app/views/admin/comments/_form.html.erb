@@ -1,0 +1,6 @@
+<%= form_for [:admin, @question, @comment] do |f| %>
+  <%= f.text_area :content,  placeholder: 'I like this question!', class:"q-textarea"%>
+  <div class="center-align">
+    <%= f.submit %>
+  </div>
+<% end %>

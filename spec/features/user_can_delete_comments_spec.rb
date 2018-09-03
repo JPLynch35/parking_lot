@@ -4,14 +4,16 @@ describe 'user visits question show page' do
   context 'as an unregistered visitor' do
     before :each do
       @user1 = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
+      @user2 = User.create(email: 'Jill@gmail.com', first_name: 'Jill', last_name: 'Toner', password: 'doublesecret')
       @question1 = @user1.questions.create(content: 'How do people train for a marathon?')
+      @comment = @user2.comments.create(content: 'Great Question!', question_id: @question1.id)
     end
-    it 'cannot post a comment' do
+    it 'cannot delete a comment' do
       visit question_path(@question1)
 
-      expect(page).to_not have_button('Post a Comment')
+      expect(page).to_not have_link('Delete')
 
-      visit new_question_comment_path(@question1)
+      visit edit_question_comment_path(@question1, @comment)
       expect(page).to have_content("The page you were looking for doesn't exist.")
     end
   end
@@ -21,27 +23,23 @@ describe 'user visits question show page' do
       @user1 = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
       @user2 = User.create(email: 'Jill@gmail.com', first_name: 'Jill', last_name: 'Toner', password: 'doublesecret')
       @question1 = @user1.questions.create(content: 'How do people train for a marathon?')
-      @question2 = @user1.questions.create(content: 'How do you win a pizza eating contest?')
+      @comment1 = @user1.comments.create(content: 'Great Question!', question_id: @question1.id)
+      @comment2 = @user2.comments.create(content: 'Terrible Question!', question_id: @question1.id)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
     end
-    it 'can successfully navigate to post a comment' do
+    it 'can successfully delete their own comment' do
       visit question_path(@question1)
 
-      expect(page).to have_button('Post a Comment')
+      within('#comment-1') do
+        expect(page).to_not have_link('Delete')
+      end
 
-      click_on('Post a Comment')
-
-      expect(current_path).to eq(new_question_comment_path(@question1))
-    end
-    it 'can successfully post a comment' do
-      visit new_question_comment_path(@question1)
-
-      fill_in :comment_content, with: 'But really, how do they do it?'
-      click_on 'Create Comment'
+      within('#comment-2') do
+        click_on('Delete')
+      end
 
       expect(current_path).to eq(question_path(@question1))
-      expect(page).to have_content('But really, how do they do it?')
-      expect(page).to have_content('Jill T.')
+      expect(page).to_not have_content('Terrible Question!')
     end
   end
 
@@ -50,27 +48,24 @@ describe 'user visits question show page' do
       @user1 = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
       @admin1 = User.create(email: 'Jill@gmail.com', first_name: 'Jill', last_name: 'Smith', password: 'secret', role: 1)
       @question1 = @user1.questions.create(content: 'How do people train for a marathon?')
-      @question2 = @user1.questions.create(content: 'How do you win a pizza eating contest?')
+      @comment1 = @user1.comments.create(content: 'Great Question!', question_id: @question1.id)
+      @comment2 = @admin1.comments.create(content: 'This is my admin comment.', question_id: @question1.id)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
     end
-    it 'can successfully navigate to post a comment' do
+    it 'can successfully delete any comment' do
       visit admin_question_path(@question1)
 
-      expect(page).to have_button('Post a Comment')
+      within('#comment-2') do
+        click_on('Delete')
+      end
 
-      click_on('Post a Comment')
-
-      expect(current_path).to eq(new_admin_question_comment_path(@question1))
-    end
-    it 'can successfully post a comment' do
-      visit new_admin_question_comment_path(@question1)
-
-      fill_in :comment_content, with: 'Can you please clarify?'
-      click_on 'Create Comment'
+      within('#comment-1') do
+        click_on('Delete')
+      end
 
       expect(current_path).to eq(admin_question_path(@question1))
-      expect(page).to have_content('Can you please clarify?')
-      expect(page).to have_content('Jill S.')
+      expect(page).to_not have_content('Great Question!')
+      expect(page).to_not have_content('This is my admin comment.')
     end
   end
 end

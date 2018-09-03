@@ -65,7 +65,7 @@ describe 'user visits question show page' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
     end
     it 'can successfully navigate to edit their own comment' do
-      visit question_path(@question1)
+      visit admin_question_path(@question1)
 
       within('#comment-1') do
         expect(page).to_not have_link('Edit')
@@ -77,15 +77,15 @@ describe 'user visits question show page' do
         click_on('Edit')
       end
 
-      expect(current_path).to eq(edit_question_comment_path(@question1, @comment2))
+      expect(current_path).to eq(edit_admin_question_comment_path(@question1, @comment2))
     end
     it 'can successfully edit their own comment' do
-      visit edit_question_comment_path(@question1, @comment2)
+      visit edit_admin_question_comment_path(@question1, @comment2)
 
       fill_in :comment_content, with: 'Almight powerful admin, making a normal comment.'
       click_on 'Update Comment'
 
-      expect(current_path).to eq(question_path(@question1))
+      expect(current_path).to eq(admin_question_path(@question1))
       within('#comment-2') do
         expect(page).to have_content('Almight powerful admin, making a normal comment.')
       end
