@@ -65,7 +65,7 @@
   }
 
   .show-c {
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -96,6 +96,10 @@
   .remove-margin {
     margin-left: 24px;
   }
+
+  .b-margin {
+    margin-bottom: 5px;
+  }
   
   .answer-border {
     border-style: solid;
@@ -114,6 +118,10 @@
     border-style: solid;
     border-width: 5px;
     border-color: rgb(247, 194, 68);
+  }
+
+  .delete-text {
+    color: rgb(255, 171, 64)
   }
   
   #answer {
