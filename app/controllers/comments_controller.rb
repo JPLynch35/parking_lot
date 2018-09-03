@@ -22,6 +22,16 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.find(params[:id])
   end
 
+  def update
+    @question = Question.find(params[:question_id])
+    @comment = current_user.comments.find(params[:id])
+    if @comment.update(full_comment_params)
+      redirect_to question_path(@question)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def partial_comment_params

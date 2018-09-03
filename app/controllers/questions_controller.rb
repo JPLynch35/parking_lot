@@ -28,7 +28,6 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    return render file: '/public/404.html' unless !!current_user
     @question = current_user.questions.find(params[:id])
     if @question.update(question_params)
       redirect_to question_path(@question)
