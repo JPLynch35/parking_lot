@@ -29,6 +29,17 @@ describe 'user visits questions index page' do
       expect(page).to have_content('This is a test question, can you see it?')
       expect(page).to have_content('Submitted by: Bob S.')
     end
+    it 'cannot post a question without content' do
+      visit questions_path
+      click_on 'Post a Question'
+
+      expect(current_path).to eq(new_question_path)
+
+      fill_in :question_content, with: ''
+      click_on 'Submit'
+
+      expect(page).to have_button('Submit')
+    end
   end
 
   context 'logged in as as an admin' do

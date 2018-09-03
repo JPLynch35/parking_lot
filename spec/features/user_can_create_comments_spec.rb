@@ -65,7 +65,7 @@ describe 'user visits question show page' do
     it 'can successfully post a comment' do
       visit new_question_comment_path(@question1)
 
-      fill_in :comment_content, with: 'But really, how do they do it?'
+      fill_in :comment_content, with: 'Can you please clarify?'
       click_on 'Create Comment'
 
       expect(current_path).to eq(question_path(@question1))
