@@ -27,8 +27,6 @@ describe 'user visits question show page' do
     it 'can successfully navigate to post a comment' do
       visit question_path(@question1)
 
-      expect(page).to have_button('Post a Comment')
-
       click_on('Post a Comment')
 
       expect(current_path).to eq(new_question_comment_path(@question1))
@@ -55,8 +53,6 @@ describe 'user visits question show page' do
     end
     it 'can successfully navigate to post a comment' do
       visit admin_question_path(@question1)
-
-      expect(page).to have_button('Post a Comment')
 
       click_on('Post a Comment')
 
