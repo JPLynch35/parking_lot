@@ -30,11 +30,11 @@ describe 'user visits question show page' do
     it 'can successfully navigate to edit their own comment' do
       visit question_path(@question1)
 
-      within('#comment-1') do
+      within("#comment-#{@comment1.id}") do
         expect(page).to_not have_link('Edit')
       end
 
-      within('#comment-2') do
+      within("#comment-#{@comment2.id}") do
         expect(page).to have_link('Edit')
 
         click_on('Edit')
@@ -49,7 +49,7 @@ describe 'user visits question show page' do
       click_on 'Update Comment'
 
       expect(current_path).to eq(question_path(@question1))
-      within('#comment-2') do
+      within("#comment-#{@comment2.id}") do
         expect(page).to have_content('Slightly bad question.')
       end
     end
@@ -67,11 +67,11 @@ describe 'user visits question show page' do
     it 'can successfully navigate to edit their own comment' do
       visit admin_question_path(@question1)
 
-      within('#comment-1') do
+      within("#comment-#{@comment1.id}") do
         expect(page).to_not have_link('Edit')
       end
 
-      within('#comment-2') do
+      within("#comment-#{@comment2.id}") do
         expect(page).to have_link('Edit')
 
         click_on('Edit')
@@ -86,7 +86,7 @@ describe 'user visits question show page' do
       click_on 'Update Comment'
 
       expect(current_path).to eq(admin_question_path(@question1))
-      within('#comment-2') do
+      within("#comment-#{@comment2.id}") do
         expect(page).to have_content('Almight powerful admin, making a normal comment.')
       end
     end
