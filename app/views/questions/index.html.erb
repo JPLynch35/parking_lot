@@ -21,7 +21,11 @@
         <% end %>
       <% else %>
         <%= link_to question_path(question) do %>
-          <div class="card teal">
+          <% if question.answer.nil? %>
+            <div class="card teal">
+          <% else %>
+            <div class="card teal answer-border">
+          <% end %>
             <div class="card-content white-text show-card">
               <p><%= question.content %></p></br>
               <p>Submitted by: <%= question.user.first_name.capitalize %> <%= question.user.last_name.capitalize[0] %></p>
