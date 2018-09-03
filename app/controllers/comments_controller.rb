@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    render file: '/public/404.html' if current_user.nil?
+    return render file: '/public/404.html' unless !!current_user
     @question = Question.find(params[:question_id])
     @comment = Comment.new
     @comment.question_id = @question.id
@@ -14,6 +14,12 @@ class CommentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    return render file: '/public/404.html' unless !!current_user
+    @question = Question.find(params[:question_id])
+    @comment = current_user.comments.find(params[:id])
   end
 
   private
