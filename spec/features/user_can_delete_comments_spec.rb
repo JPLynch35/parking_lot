@@ -55,7 +55,7 @@ describe 'user visits question show page' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
     end
     it 'can successfully delete their own comment' do
-      visit question_path(@question1)
+      visit admin_question_path(@question1)
 
       within('#comment-1') do
         expect(page).to_not have_link('Delete')

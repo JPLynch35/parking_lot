@@ -54,11 +54,7 @@
   <% @comments.each_with_index do |comment, index| %>
     <div class="center-align show-c" id="comment-<%= index + 1 %>">
       <div class="col s12" style="width:65%">
-        <% if comment.user.admin? %>
-          <div class="card blue">
-        <% else %>
-          <div class="card amber">
-        <% end %>
+        <div class="card amber">
           <div class="card-content white-text show-card">
             <p><%= comment.content %></p></br>
             <p>Submitted by: <%= comment.user.first_name.capitalize %> <%= comment.user.last_name.capitalize[0] %>.</p>
