@@ -35,8 +35,6 @@ describe 'user visits question show page' do
       end
 
       within('#comment-2') do
-        expect(page).to have_link('Delete')
-
         click_on('Delete')
       end
 
@@ -54,20 +52,19 @@ describe 'user visits question show page' do
       @comment2 = @admin1.comments.create(content: 'This is my admin comment.', question_id: @question1.id)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
     end
-    it 'can successfully delete their own comment' do
+    it 'can successfully delete any comment' do
       visit admin_question_path(@question1)
 
-      within('#comment-1') do
-        expect(page).to_not have_link('Delete')
-      end
-
       within('#comment-2') do
-        expect(page).to have_link('Delete')
-
         click_on('Delete')
       end
 
-      expect(current_path).to eq(question_path(@question1))
+      within('#comment-1') do
+        click_on('Delete')
+      end
+
+      expect(current_path).to eq(admin_question_path(@question1))
+      expect(page).to_not have_content('Great Question!')
       expect(page).to_not have_content('This is my admin comment.')
     end
   end

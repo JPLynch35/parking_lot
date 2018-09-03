@@ -54,21 +54,21 @@ describe 'user visits question show page' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
     end
     it 'can successfully navigate to post a comment' do
-      visit question_path(@question1)
+      visit admin_question_path(@question1)
 
       expect(page).to have_button('Post a Comment')
 
       click_on('Post a Comment')
 
-      expect(current_path).to eq(new_question_comment_path(@question1))
+      expect(current_path).to eq(new_admin_question_comment_path(@question1))
     end
     it 'can successfully post a comment' do
-      visit new_question_comment_path(@question1)
+      visit new_admin_question_comment_path(@question1)
 
       fill_in :comment_content, with: 'Can you please clarify?'
       click_on 'Create Comment'
 
-      expect(current_path).to eq(question_path(@question1))
+      expect(current_path).to eq(admin_question_path(@question1))
       expect(page).to have_content('Can you please clarify?')
       expect(page).to have_content('Jill S.')
     end
