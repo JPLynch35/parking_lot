@@ -62,8 +62,7 @@
           <% if comment.user == current_user %>
             <div class="card-action remove-margin">
               <%= link_to "Edit", edit_question_comment_path(@question, comment), method: 'get' %>
- 
- 
+              <%= link_to "Delete", question_comment_path(@question, comment), method: 'delete' %>
             </div>
           <% end %>
         </div>
