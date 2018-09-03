@@ -32,6 +32,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @question = Question.find(params[:question_id])
+    @comment = current_user.comments.find(params[:id])
+    @comment.destroy
+    redirect_to question_path(@question)
+  end
+
   private
 
   def partial_comment_params
