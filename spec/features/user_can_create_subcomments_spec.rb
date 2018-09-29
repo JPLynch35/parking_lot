@@ -13,7 +13,7 @@ describe 'user visits question show page' do
 
       expect(page).to_not have_button('Post a Sub-Comment')
 
-      visit new_question_comment_subcomment_path(@question1)
+      visit new_question_comment_sub_comment_path(@question1, @comment)
       expect(page).to have_content("The page you were looking for doesn't exist.")
     end
   end
@@ -29,17 +29,17 @@ describe 'user visits question show page' do
     it 'can successfully navigate to post a subcomment' do
       visit question_path(@question1)
 
-      within('comment-#{@comment.id}') do
-        click_on('Post a Comment')
+      within("#comment-#{@comment.id}") do
+        click_on('Post a Sub-Comment')
       end
 
-      expect(current_path).to eq(new_question_comment_subcomment_path(@question1, @comment))
+      expect(current_path).to eq(new_question_comment_sub_comment_path(@question1, @comment))
     end
     it 'can successfully post a subcomment' do
-      visit new_question_comment_subcomment_path(@question1, @comment)
+      visit new_question_comment_sub_comment_path(@question1, @comment)
 
-      fill_in :subcomment_content, with: 'Great info!'
-      click_on 'Create Sub-Comment'
+      fill_in :sub_comment_content, with: 'Great info!'
+      click_on('Create a Sub-Comment')
 
       expect(current_path).to eq(question_path(@question1))
       expect(page).to have_content('Great info!')

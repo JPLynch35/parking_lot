@@ -35,8 +35,6 @@ describe 'user visits question show page' do
       end
 
       within("#comment-#{@comment2.id}") do
-        expect(page).to have_link('Edit')
-
         click_on('Edit')
       end
 

@@ -10,7 +10,7 @@
     <div class="row card-rows center-align">
       <div class="col s6" style="width:100%">
         <div class="card teal">
-          <div class="card-content white-text show-card">
+          <div class="card-content white-text">
             <p><%= @question.content %></p></br>
             <p>Submitted by: <%= @question.user.first_name.capitalize %> <%= @question.user.last_name.capitalize[0] %>.</p>
           </div>
@@ -26,7 +26,7 @@
     <div class="row card-rows center-align">
       <div class="col s6" style="width:100%">
         <div class="card blue">
-          <div class="card-content white-text show-card">
+          <div class="card-content white-text">
             <p><%= @question.answer.content %></p></br>
             <p>Answered by: <%= @question.answer.user.first_name.capitalize %> <%= @question.answer.user.last_name.capitalize[0] %>.</p>
           </div>
@@ -37,7 +37,7 @@
     <div class="row card-rows center-align">
       <div class="col s12" style="width:100%">
         <div class="card teal">
-          <div class="card-content white-text show-card">
+          <div class="card-content white-text">
             <p><%= @question.content %></p></br>
             <p>Submitted by: <%= @question.user.first_name.capitalize %> <%= @question.user.last_name.capitalize[0] %>.</p>
           </div>
@@ -55,17 +55,19 @@
 <section>
   <% @comments.each_with_index do |comment, index| %>
     <div class="center-align show-c" id="comment-<%= index + 1 %>">
-      <div class="col s12" style="width:65%">
+      <div class="col s12 comment-size">
         <% if comment.user.admin? %>
           <div class="card blue">
         <% else %>
           <div class="card amber">
         <% end %>
-          <div class="card-content white-text show-card">
+          <div class="card-content white-text">
             <p><%= comment.content %></p></br>
             <p>Submitted by: <%= comment.user.first_name.capitalize %> <%= comment.user.last_name.capitalize[0] %>.</p>
           </div>
-          <%= button_to "Post a Sub-Comment", new_question_comment_sub_comment_path(@question, comment), method: "get", class: "b-margin" %>
+          <% if current_user %>
+            <%= button_to "Post a Sub-Comment", new_question_comment_sub_comment_path(@question, comment), method: "get", class: "b-margin" %>
+          <% end %>
           <% if comment.user == current_user %>
             <div class="card-action remove-margin">
               <%= link_to "Edit", edit_question_comment_path(@question, comment), method: 'get' %>
@@ -75,5 +77,27 @@
         </div>
       </div>
     </div>
+    <% comment.sub_comments.each_with_index do |sub_comment, index| %>
+      <div class="center-align show-c" id="sub_comment-<%= index + 1 %>">
+        <div class="col s12 subcomment-size">
+          <% if sub_comment.user.admin? %>
+            <div class="card blue">
+          <% else %>
+            <div class="card blue-grey">
+          <% end %>
+            <div class="card-content white-text">
+              <p><%= sub_comment.content %></p></br>
+              <p>Submitted by: <%= sub_comment.user.first_name.capitalize %> <%= sub_comment.user.last_name.capitalize[0] %>.</p>
+            </div>
+            <% if sub_comment.user == current_user %>
+              <div class="card-action remove-margin">
+                <%= link_to "Edit", edit_question_comment_sub_comment_path(@question, comment, sub_comment), method: 'get' %>
+                <%= link_to "Delete", question_comment_sub_comment_path(@question, comment, sub_comment), method: 'delete' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </section>
