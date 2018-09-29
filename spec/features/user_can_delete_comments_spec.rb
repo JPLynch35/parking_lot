@@ -30,11 +30,11 @@ describe 'user visits question show page' do
     it 'can successfully delete their own comment' do
       visit question_path(@question1)
 
-      within('#comment-1') do
+      within("#comment-#{@comment1.id}") do
         expect(page).to_not have_link('Delete')
       end
 
-      within('#comment-2') do
+      within("#comment-#{@comment2.id}") do
         click_on('Delete')
       end
 
@@ -55,11 +55,11 @@ describe 'user visits question show page' do
     it 'can successfully delete any comment' do
       visit admin_question_path(@question1)
 
-      within('#comment-2') do
+      within("#comment-#{@comment2.id}") do
         click_on('Delete')
       end
 
-      within('#comment-1') do
+      within("#comment-#{@comment1.id}") do
         click_on('Delete')
       end
 
