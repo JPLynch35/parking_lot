@@ -6,8 +6,17 @@ ParkingLot is a web application that I started in the first half of my time at t
 When a user requests the root page, it will automatically bring them to the questions index page which is the front page of the app.  The user can review all questions from this page, a blue outline around the card inidicates that an instructor has answered the question.
 <img width="1440" alt="screen shot 2018-09-29 at 10 19 57 am" src="https://user-images.githubusercontent.com/32905782/46248048-4b144180-c3d1-11e8-9549-1ae8d4a74f2f.png">  
 
-Each question card can be clicked on in order to view the question show page.  This page will show you the question, answer and comments.
+Each question card can be clicked on in order to view the question show page.  This page will show you the question, answer (if answered), comments and sub-comments.  Only logged in users can post questions, comments and sub-comments, while admins can post answers, comments and sub-comments.  
+User question show:  
+<img width="1440" alt="screen shot 2018-09-29 at 11 05 53 am" src="https://user-images.githubusercontent.com/32905782/46248530-a8ab8c80-c3d7-11e8-95ae-b52ed6d4326c.png">
+Admin question show:  
+<img width="1440" alt="screen shot 2018-09-29 at 11 06 52 am" src="https://user-images.githubusercontent.com/32905782/46248541-cbd63c00-c3d7-11e8-8edb-4065ed00cf4c.png">
 
+Unregistered users can view all questions, answers, comments and sub-comments, but may not create any.  In order to do so, they must log in or register (right side of navigation bar).  
+Log in:  
+<img width="1440" alt="screen shot 2018-09-29 at 11 09 40 am" src="https://user-images.githubusercontent.com/32905782/46248580-3c7d5880-c3d8-11e8-88bf-d1b40a31ec04.png">
+Register:  
+<img width="1440" alt="screen shot 2018-09-29 at 11 09 33 am" src="https://user-images.githubusercontent.com/32905782/46248586-56b73680-c3d8-11e8-8c3c-7190058e4a0d.png">
 
 ## Getting Started
 
