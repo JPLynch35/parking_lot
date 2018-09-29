@@ -30,7 +30,7 @@ This application was created in Rails v5.1.6, utilizing Ruby v2.4.1.
 
 Clone the project down locally to your machine.  
 ```
-git clone https://github.com/JPLynch35/bar_hop_buddy.git
+git clone https://github.com/JPLynch35/parking_lot.git
 ```  
 Inside the project directory, prepare the gems for development with bundler.  
 ```
@@ -48,12 +48,8 @@ rspec
 
 * Ruby 2.4.1- The code language
 * Rails 5.1.6- Ruby's web framework
-* Semantic UI- Front end framework for styling
-* jQuery- JavaScript library
-* OmniAuth Google OAuth2- Logging in utilizing a Google account
-* MapBox- API for reverse geolocation and creating maps
-* Chart.js- API for creating charts
-* NewRelic- Performance analytics (removed due to Heroku memory issues)
+* Google's Materialize- Front end framework for styling
+* BCrypt- password hashing
 
 ## Authors
 
