@@ -1,5 +1,4 @@
-# ParkingLot
-#### WIP
+# ParkingLot (WIP)
 
 ParkingLot is a web application that I started in the first half of my time at the Turing School of Software & Design.  During each of the 4 modules we go through at the school, there is space on the side of the whiteboards designated as the 'Parking Lot.'  Any questions that students have which don't relate to the current lesson or would be better answered later, go into this section of whiteboard.  The problem I saw is that there is no recording of the answer, so if a student is out that day, they miss the answer.  I decided to incorporate this question and answer design into a web application, so that students could reference past questions and answers, and also as a way to practice Rails CRUD (as this was relatively new to us at this point in our Turing careers).
 
