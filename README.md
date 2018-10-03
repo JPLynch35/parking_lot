@@ -38,6 +38,10 @@ Inside the project directory, prepare the gems for development with bundler.
 ```
 bundle install
 ``` 
+Now create the database, prep the migrations, and load the seed data.
+```
+rake db:{create,migrate,seed}
+``` 
 
 ## Running the tests
 
