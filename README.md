@@ -4,6 +4,9 @@ ParkingLot is a web application that I started in the first half of my time at t
 
 The problem I saw is that there is no recording of the answer, so if a student is out that day, they miss the answer.  I decided to incorporate this question and answer design into a web application, so that students could reference past questions and answers, and also as a way to practice Rails CRUD (as this was relatively new to us at this point in our Turing careers).
 
+### Production Site  
+[https://parking-lot.herokuapp.com](https://parking-lot.herokuapp.com)
+
 ## Navigating the App  
 When a user requests the root page, it will automatically bring them to the questions index page which is the front page of the app.  The user can review all questions from this page, a blue outline around the card inidicates that an instructor has answered the question.
 <img width="1440" alt="screen shot 2018-09-29 at 10 19 57 am" src="https://user-images.githubusercontent.com/32905782/46248048-4b144180-c3d1-11e8-9549-1ae8d4a74f2f.png">  
