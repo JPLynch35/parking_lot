@@ -1,4 +1,4 @@
-class SubCommentsController < ApplicationController
+class Admin::SubCommentsController < ApplicationController
   def new
     @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:comment_id])
@@ -11,13 +11,14 @@ class SubCommentsController < ApplicationController
     @comment = Comment.find(params[:comment_id])
     @sub_comment = current_user.sub_comments.create(full_sub_comment_params)
     if @sub_comment.save
-      redirect_to question_path(question)
+      redirect_to admin_question_path(question)
     else
       render :new
     end
   end
 
   def edit
+    return render file: '/public/404.html' unless !!current_user
     @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:comment_id])
     @sub_comment = current_user.sub_comments.find(params[:id])
@@ -28,17 +29,18 @@ class SubCommentsController < ApplicationController
     @comment = question.comments.find(params[:comment_id])
     @sub_comment = current_user.sub_comments.find(params[:id])
     if @sub_comment.update(full_sub_comment_params)
-      redirect_to question_path(question)
+      redirect_to admin_question_path(question)
     else
       render :edit
     end
   end
 
   def destroy
-    @question = Question.find(params[:question_id])
-    @comment = current_user.comments.find(params[:id])
-    @comment.destroy
-    redirect_to question_path(@question)
+    question = Question.find(params[:question_id])
+    comment = question.comments.find(params[:comment_id])
+    @sub_comment = comment.sub_comments.find(params[:id])
+    @sub_comment.destroy
+    redirect_to admin_question_path(question)
   end
 
   private
