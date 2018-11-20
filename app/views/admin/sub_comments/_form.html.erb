@@ -1,0 +1,6 @@
+<%= form_for [:admin, @question, @comment, @sub_comment] do |f| %>
+  <%= f.text_area :content,  placeholder: 'I like this comment!', class:"q-textarea"%>
+  <div class="center-align">
+    <%= f.submit 'Create Sub-Comment'%>
+  </div>
+<% end %>
