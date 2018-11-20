@@ -52,10 +52,10 @@ describe 'user visits question show page' do
       @admin = User.create(email: 'Jill@gmail.com', first_name: 'Jill', last_name: 'Smith', password: 'secret', role: 1)
       @question = @user.questions.create(content: 'How do people train for a marathon?')
       @comment = @user.comments.create(content: 'Great Question!', question_id: @question.id)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
     it 'can successfully navigate to post a sub-comment' do
-      visit admin_question_path(@question1)
+      visit admin_question_path(@question)
 
       expect(page).to have_button('Post a Sub-Comment')
 
@@ -66,7 +66,7 @@ describe 'user visits question show page' do
     it 'can successfully post a sub-comment' do
       visit new_admin_question_comment_sub_comment_path(@question, @comment)
 
-      fill_in :comment_content, with: 'Can you please clarify?'
+      fill_in :sub_comment_content, with: 'Can you please clarify?'
       click_on 'Create Sub-Comment'
 
       expect(current_path).to eq(admin_question_path(@question))
