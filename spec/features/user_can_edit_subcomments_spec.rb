@@ -46,7 +46,7 @@ describe 'user visits question show page' do
       visit edit_question_comment_sub_comment_path(@question, @comment, @sub_comment2)
 
       fill_in :sub_comment_content, with: 'Slightly bad comment.'
-      click_on 'Create a Sub-Comment'
+      click_on 'Create Sub-Comment'
 
       expect(current_path).to eq(question_path(@question))
       within("#sub_comment-#{@sub_comment2.id}") do
@@ -80,16 +80,17 @@ describe 'user visits question show page' do
 
       expect(current_path).to eq(edit_admin_question_comment_sub_comment_path(@question, @comment, @sub_comment2))
     end
-  #   it 'can successfully edit their own comment' do
-  #     visit edit_admin_question_comment_path(@question, @comment2)
+    it 'can successfully edit their own subcomment' do
+      visit edit_admin_question_comment_sub_comment_path(@question, @comment, @sub_comment2)
 
-  #     fill_in :comment_content, with: 'Almight powerful admin, making a normal comment.'
-  #     click_on 'Update Comment'
+      fill_in :sub_comment_content, with: 'I edited this sub-comment!'
+      click_on 'Create Sub-Comment'
 
-  #     expect(current_path).to eq(admin_question_path(@question))
-  #     within("#comment-#{@comment2.id}") do
-  #       expect(page).to have_content('Almight powerful admin, making a normal comment.')
-  #     end
-  #   end
+      expect(current_path).to eq(admin_question_path(@question))
+      within("#sub_comment-#{@sub_comment2.id}") do
+        expect(page).to_not have_content('Almight powerful admin, making a normal comment.')
+        expect(page).to have_content('I edited this sub-comment!')
+      end
+    end
   end
 end
