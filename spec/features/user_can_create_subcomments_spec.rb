@@ -39,39 +39,39 @@ describe 'user visits question show page' do
       visit new_question_comment_sub_comment_path(@question1, @comment)
 
       fill_in :sub_comment_content, with: 'Great info!'
-      click_on('Create a Sub-Comment')
+      click_on('Create Sub-Comment')
 
       expect(current_path).to eq(question_path(@question1))
       expect(page).to have_content('Great info!')
     end
   end
 
-  # context 'logged in as as an admin' do
-  #   before :each do
-  #     @user1 = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
-  #     @admin1 = User.create(email: 'Jill@gmail.com', first_name: 'Jill', last_name: 'Smith', password: 'secret', role: 1)
-  #     @question1 = @user1.questions.create(content: 'How do people train for a marathon?')
-  #     @question2 = @user1.questions.create(content: 'How do you win a pizza eating contest?')
-  #     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
-  #   end
-  #   it 'can successfully navigate to post a comment' do
-  #     visit admin_question_path(@question1)
+  context 'logged in as as an admin' do
+    before :each do
+      @user = User.create(email: 'Bob@gmail.com', first_name: 'Bob', last_name: 'Smith', password: 'secret')
+      @admin = User.create(email: 'Jill@gmail.com', first_name: 'Jill', last_name: 'Smith', password: 'secret', role: 1)
+      @question = @user.questions.create(content: 'How do people train for a marathon?')
+      @comment = @user.comments.create(content: 'Great Question!', question_id: @question.id)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin1)
+    end
+    it 'can successfully navigate to post a sub-comment' do
+      visit admin_question_path(@question1)
 
-  #     expect(page).to have_button('Post a Comment')
+      expect(page).to have_button('Post a Sub-Comment')
 
-  #     click_on('Post a Comment')
+      click_on('Post a Sub-Comment')
 
-  #     expect(current_path).to eq(new_admin_question_comment_path(@question1))
-  #   end
-  #   it 'can successfully post a comment' do
-  #     visit new_admin_question_comment_path(@question1)
+      expect(current_path).to eq(new_admin_question_comment_sub_comment_path(@question, @comment))
+    end
+    it 'can successfully post a sub-comment' do
+      visit new_admin_question_comment_sub_comment_path(@question, @comment)
 
-  #     fill_in :comment_content, with: 'Can you please clarify?'
-  #     click_on 'Create Comment'
+      fill_in :comment_content, with: 'Can you please clarify?'
+      click_on 'Create Sub-Comment'
 
-  #     expect(current_path).to eq(admin_question_path(@question1))
-  #     expect(page).to have_content('Can you please clarify?')
-  #     expect(page).to have_content('Jill S.')
-  #   end
-  # end
+      expect(current_path).to eq(admin_question_path(@question))
+      expect(page).to have_content('Can you please clarify?')
+      expect(page).to have_content('Jill S.')
+    end
+  end
 end
