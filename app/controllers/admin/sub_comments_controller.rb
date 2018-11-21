@@ -18,7 +18,6 @@ class Admin::SubCommentsController < ApplicationController
   end
 
   def edit
-    return render file: '/public/404.html' unless !!current_user
     @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:comment_id])
     @sub_comment = current_user.sub_comments.find(params[:id])
