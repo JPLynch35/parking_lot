@@ -37,10 +37,11 @@ class SubCommentsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:question_id])
-    @comment = current_user.comments.find(params[:id])
-    @comment.destroy
-    redirect_to question_path(@question)
+    question = Question.find(params[:question_id])
+    comment = question.comments.find(params[:comment_id])
+    @sub_comment = current_user.sub_comments.find(params[:id])
+    @sub_comment.destroy
+    redirect_to question_path(question)
   end
 
   private
