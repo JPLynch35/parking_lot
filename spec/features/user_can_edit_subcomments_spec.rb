@@ -53,6 +53,14 @@ describe 'user visits question show page' do
         expect(page).to have_content('Slightly bad comment.')
       end
     end
+    it 'will not successfully edit a comment if made blank' do
+      visit edit_question_comment_sub_comment_path(@question, @comment, @sub_comment2)
+
+      fill_in :sub_comment_content, with: ''
+      click_on 'Create Sub-Comment'
+
+      expect(page).to have_button('Create Sub-Comment')
+    end
   end
 
   context 'logged in as as an admin' do
@@ -91,6 +99,14 @@ describe 'user visits question show page' do
         expect(page).to_not have_content('Almight powerful admin, making a normal comment.')
         expect(page).to have_content('I edited this sub-comment!')
       end
+    end
+    it 'will not successfully edit a comment if made blank' do
+      visit edit_admin_question_comment_sub_comment_path(@question, @comment, @sub_comment2)
+
+      fill_in :sub_comment_content, with: ''
+      click_on 'Create Sub-Comment'
+
+      expect(page).to have_button('Create Sub-Comment')
     end
   end
 end

@@ -7,11 +7,11 @@ class Admin::SubCommentsController < ApplicationController
   end
 
   def create
-    question = Question.find(params[:question_id])
+    @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:comment_id])
     @sub_comment = current_user.sub_comments.create(full_sub_comment_params)
     if @sub_comment.save
-      redirect_to admin_question_path(question)
+      redirect_to admin_question_path(@question)
     else
       render :new
     end
@@ -24,11 +24,11 @@ class Admin::SubCommentsController < ApplicationController
   end
 
   def update
-    question = Question.find(params[:question_id])
-    @comment = question.comments.find(params[:comment_id])
+    @question = Question.find(params[:question_id])
+    @comment = @question.comments.find(params[:comment_id])
     @sub_comment = current_user.sub_comments.find(params[:id])
     if @sub_comment.update(full_sub_comment_params)
-      redirect_to admin_question_path(question)
+      redirect_to admin_question_path(@question)
     else
       render :edit
     end

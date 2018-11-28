@@ -9,7 +9,7 @@ describe 'user visits question show page' do
       @comment = @user2.comments.create(content: 'What are you asking', question_id: @question.id)
       @sub_comment = @user1.sub_comments.create(content: 'I will have to get back to you on that', comment_id: @comment.id, )
     end
-    it 'cannot delete a sub-comment' do
+    it 'cannot delete a subcomment' do
       visit question_path(@question)
 
       expect(page).to_not have_link('Delete')
@@ -29,7 +29,7 @@ describe 'user visits question show page' do
       @sub_comment = @user1.sub_comments.create(content: 'I will have to get back to you on that', comment_id: @comment.id, )
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
     end
-    it 'can successfully delete their own sub-comment' do
+    it 'can successfully delete their own subcomment' do
       visit question_path(@question)
 
       within("#sub_comment-#{@sub_comment.id}") do
@@ -51,7 +51,7 @@ describe 'user visits question show page' do
       @sub_comment = @user1.sub_comments.create(content: 'I will have to get back to you on that', comment_id: @comment.id, )
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
-    it 'can successfully delete any sub-comment' do
+    it 'can successfully delete any subcomment' do
       visit admin_question_path(@question)
 
       within("#sub_comment-#{@sub_comment.id}") do
