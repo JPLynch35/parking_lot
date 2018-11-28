@@ -20,5 +20,15 @@ describe 'user visits admin question show page' do
       expect(current_path).to eq(admin_question_path(@question1))
       expect(page).to have_content('This is an edited answer')
     end
+    it 'will not update if answer field is made blank' do
+      visit admin_question_path(@question1)
+      within('#answer') do
+        click_on 'Edit'
+      end
+      fill_in :answer_content, with: ''
+      click_on 'Submit'
+
+      expect(page).to have_content('Submit')
+    end
   end
 end

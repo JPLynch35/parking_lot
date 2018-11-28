@@ -41,6 +41,15 @@ describe 'user visits question show page' do
       expect(page).to have_content('But really, how do they do it?')
       expect(page).to have_content('Jill T.')
     end
+    it 'will not post a comment if blank' do
+      visit new_question_comment_path(@question1)
+
+      fill_in :comment_content, with: ''
+
+      click_on 'Create Comment'
+
+      expect(page).to have_button('Create Comment')
+    end
   end
 
   context 'logged in as as an admin' do
@@ -67,6 +76,14 @@ describe 'user visits question show page' do
       expect(current_path).to eq(admin_question_path(@question1))
       expect(page).to have_content('Can you please clarify?')
       expect(page).to have_content('Jill S.')
+    end
+    it 'will not post a comment if blank' do
+      visit new_admin_question_comment_path(@question1)
+
+      fill_in :comment_content, with: ''
+      click_on 'Create Comment'
+
+      expect(page).to have_button('Create Comment')
     end
   end
 end
