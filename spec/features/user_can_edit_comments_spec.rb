@@ -51,6 +51,14 @@ describe 'user visits question show page' do
         expect(page).to have_content('Slightly bad question.')
       end
     end
+    it 'will not successfully edit a comment if made blank' do
+      visit edit_question_comment_path(@question1, @comment2)
+
+      fill_in :comment_content, with: ''
+      click_on 'Update Comment'
+
+      expect(page).to have_button('Update Comment')
+    end
   end
 
   context 'logged in as as an admin' do
@@ -87,6 +95,14 @@ describe 'user visits question show page' do
       within("#comment-#{@comment2.id}") do
         expect(page).to have_content('Almight powerful admin, making a normal comment.')
       end
+    end
+    it 'will not successfully edit a comment if made blank' do
+      visit edit_admin_question_comment_path(@question1, @comment2)
+
+      fill_in :comment_content, with: ''
+      click_on 'Update Comment'
+
+      expect(page).to have_button('Update Comment')
     end
   end
 end
