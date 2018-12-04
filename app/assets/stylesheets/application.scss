@@ -16,6 +16,10 @@
  @import "materialize";
  @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
+ .card-action.remove-margin {
+    border: 0px;
+ }
+
  .card-rows {
     width:30%;
     display: inline-block;

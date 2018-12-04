@@ -57,9 +57,13 @@
           <% if comment.user == current_user %>
             <div class="card-action remove-margin">
               <%= link_to "Edit", edit_admin_question_comment_path(@question, comment), method: 'get' %>
-          <% end %>
-              <%= link_to "Delete", admin_question_comment_path(@question, comment), method: 'delete', class: "delete-text" %>
+              <%= link_to "Delete", admin_question_comment_path(@question, comment), method: 'delete' %>
             </div>
+          <% else %>
+            <div class="card-action remove-margin">
+              <%= link_to "Delete", admin_question_comment_path(@question, comment), method: 'delete' %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -78,9 +82,13 @@
             <% if sub_comment.user == current_user %>
               <div class="card-action remove-margin">
                 <%= link_to "Edit", edit_admin_question_comment_sub_comment_path(@question, comment, sub_comment), method: 'get' %>
-            <% end %>
                 <%= link_to "Delete", admin_question_comment_sub_comment_path(@question, comment, sub_comment), method: 'delete', class: "delete-text" %>
               </div>
+            <% else %>
+              <div class="card-action remove-margin">
+                <%= link_to "Delete", admin_question_comment_sub_comment_path(@question, comment, sub_comment), method: 'delete', class: "delete-text" %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
