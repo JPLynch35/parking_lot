@@ -49,17 +49,21 @@
         <% else %>
           <div class="card amber">
         <% end %>
-          <div class="card-content white-text">
+          <div class="card-content black-text">
             <p><%= comment.content %></p></br>
             <p>Submitted by: <%= comment.user.first_name.capitalize %> <%= comment.user.last_name.capitalize[0] %>.</p>
           </div>
           <%= button_to "Post a Sub-Comment", new_admin_question_comment_sub_comment_path(@question, comment), method: "get", class: "b-margin" %>
           <% if comment.user == current_user %>
             <div class="card-action remove-margin">
-              <%= link_to "Edit", edit_admin_question_comment_path(@question, comment), method: 'get' %>
-          <% end %>
-              <%= link_to "Delete", admin_question_comment_path(@question, comment), method: 'delete', class: "delete-text" %>
+              <%= link_to "Edit", edit_admin_question_comment_path(@question, comment), method: 'get', class: 'grey-text' %>
+              <%= link_to "Delete", admin_question_comment_path(@question, comment), method: 'delete', class: "grey-text" %>
             </div>
+          <% else %>
+            <div class="card-action remove-margin">
+              <%= link_to "Delete", admin_question_comment_path(@question, comment), method: 'delete', class: "grey-text" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -78,9 +82,13 @@
             <% if sub_comment.user == current_user %>
               <div class="card-action remove-margin">
                 <%= link_to "Edit", edit_admin_question_comment_sub_comment_path(@question, comment, sub_comment), method: 'get' %>
-            <% end %>
                 <%= link_to "Delete", admin_question_comment_sub_comment_path(@question, comment, sub_comment), method: 'delete', class: "delete-text" %>
               </div>
+            <% else %>
+              <div class="card-action remove-margin">
+                <%= link_to "Delete", admin_question_comment_sub_comment_path(@question, comment, sub_comment), method: 'delete', class: "delete-text" %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
